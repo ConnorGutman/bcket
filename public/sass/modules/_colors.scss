@@ -1,0 +1,30 @@
+$light: #DDE4F6;
+$dark: #687DDB;
+$darker: #5F75DF;
+$shadow: #EEF2F5;
+$gold: #FFD16E;
+$bright: #FF6B97;
+$mint: #41D69F;
+$type: #5A5A5A;
+
+body {
+  background-color: $light;
+}
+.container {
+  background-color: #fff;
+}
+.shadow-bg {
+  background-color: $shadow;
+}
+.light-bg {
+  background-color: $light;
+}
+.dark-bg {
+  background-color: $dark;
+}
+.darker-bg {
+  background-color: $darker;
+}
+.bright-bg {
+  background-color: $bright;
+}

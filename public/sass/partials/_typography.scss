@@ -1,0 +1,249 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+p {
+  margin: 0;
+}
+.text-center {
+  text-align: center;
+}
+.container {
+  .row {
+    .sidebar {
+      .header {
+        p {
+          color: #fff;
+          line-height: 10vh;
+          font-weight: 600;
+          font-size: 1.75em;
+          font-family: 'Jaldi', sans-serif;
+          img {
+            height: 0.75em;
+            padding-right: 2%;
+          }
+          span {
+            color: #fff;
+          }
+        }
+      }
+      .sidebar-content {
+        .sidebar-option {
+          a {
+            text-decoration: none;
+            .sidebar-button {
+              p {
+                font-family: 'Jaldi', sans-serif;
+                text-align: left;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 1.25em;
+                line-height: 10vh;
+                padding-left: 5%;
+                color: $light;
+                transition: all 0.25s ease;
+                i {
+                  color: $light;
+                  font-size: 1.5em;
+                  margin-right: 4%;
+                  transition: all 0.25s ease;
+                }
+              }
+              &:hover {
+                p {
+                  color: $dark;
+                }
+                i {
+                  color: $dark;
+                }
+              }
+            }
+          }
+        }
+        .sidebar-option.active {
+          .sidebar-button {
+            p {
+              color: $dark;
+              i {
+                color: $dark;
+              }
+            }
+          }
+        }
+        .adbox {
+          .sidebar-ad {
+            p {
+              color: $light;
+              i {
+                font-size: 6em;
+                line-height: 35vh;
+              }
+            }
+          }
+        }
+        .footer {
+          font-family: 'Jaldi', sans-serif;
+          p {
+            color: $light;
+            line-height: 7vh;
+            a {
+              color: $light;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+    .dropzone {
+      .node_status {
+        color: $gold;
+      }
+      .dropzone_box {
+        p {
+          i {
+            font-size: 6em;
+            color: $dark;
+            line-height: 40vh;
+            transition: 0.25s color ease;
+          }
+        }
+        &:hover {
+          cursor: pointer;
+          p {
+            i {
+              color: $darker;
+            }
+          }
+        }
+      }
+      .fileInfo {
+        .sidebar-scene {
+          .sidebar-file-info {
+            .description-icon {
+              height: 100%;
+              i {
+                height: 100%;
+                top: 0;
+                bottom: 0;
+                font-size: 4em;
+                color: #fff;
+              }
+            }
+          }
+          .sidebar-file-meta {
+            p {
+              font-weight: 600;
+              color: #fff;
+            }
+          }
+        }
+        .info-scene {
+          h1 {
+            color: $dark;
+            i {
+              font-size: 4em;
+            }
+          }
+          .hash-link {
+            word-wrap: break-word;
+            margin: 10vh 5%;
+            font-size: 1.5em;
+            a {
+              text-decoration: none;
+              color: $dark;
+              transition: color 1s ease;
+              &:hover {
+                color: $type;
+              }
+            }
+          }
+          p {
+            color: $dark;
+            i {
+              font-size: 2em;
+              color: $dark;
+            }
+          }
+        }
+      }
+      .returnTo {
+        a {
+          text-decoration: none;
+          color: $dark;
+          font-weight: 600;
+          opacity: 0.5;
+          transition: opacity 0.5s ease;
+          i {
+            font-weight: 600;
+          }
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+      .downloadSection {
+        h1 {
+          color: $dark;
+          i {
+            font-size: 4em;
+          }
+        }
+        h2 {
+          color: $dark;
+        }
+        input {
+          font-size: 2em;
+          color: $dark;
+          line-height: 8vh;
+          padding: 0 2%;
+          vertical-align: middle;
+        }
+        button {
+          i {
+            color: #fff;
+            font-size: 2em;
+          }
+        }
+      }
+    }
+    #downloads {
+      .downloads-heading {
+        .downloads-heading-inner {
+          p {
+            font-family: 'Jaldi', sans-serif;
+            text-align: left;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.25em;
+            line-height: 10vh;
+            padding-left: 5%;
+            color: $dark;
+            transition: all 0.25s ease;
+            i {
+              color: $dark;
+              font-size: 1.5em;
+              margin-right: 4%;
+              transition: all 0.25s ease;
+            }
+          }
+        }
+      }
+      .downloads-history {
+        .downloads-history-inner {
+          color: $light;
+          p {
+            color: $light;
+          }
+          a {
+            word-break: break-all;
+          }
+        }
+      }
+    }
+  }
+}
+.material-icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
