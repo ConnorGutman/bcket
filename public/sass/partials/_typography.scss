@@ -124,8 +124,13 @@ p {
                 height: 100%;
                 top: 0;
                 bottom: 0;
-                font-size: 4em;
+                font-size: 2em;
                 color: #fff;
+              }
+              @media(min-width: 576px) {
+                i {
+                  font-size: 4em;
+                }
               }
             }
           }
@@ -145,7 +150,7 @@ p {
           }
           .hash-link {
             word-wrap: break-word;
-            margin: 10vh 5%;
+            margin: 5vh 5%;
             font-size: 1.5em;
             a {
               text-decoration: none;
@@ -154,6 +159,9 @@ p {
               &:hover {
                 color: $type;
               }
+            }
+            @media(min-width: 576px) {
+              margin: 10vh 5%;
             }
           }
           p {

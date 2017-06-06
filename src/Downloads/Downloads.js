@@ -5,7 +5,7 @@ import DownloadHistory from './DownloadHistory.js';
 class Downloads extends Component {
   render() {
     return (
-      <div className="" id="downloads">
+      <div className="hidden-s-down" id="downloads">
         <Heading />
         <DownloadHistory />
       </div>

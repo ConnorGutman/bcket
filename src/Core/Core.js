@@ -170,7 +170,7 @@ class Core extends React.Component {
 
   render() {
     return (
-      <div className="col-9 dropzone shadow-bg" id="mainContent">
+      <div className="col-9 col-s-12 dropzone shadow-bg" id="mainContent">
         <NodeStatus offOn={this.state.offOn} />
         <NodeStats Stats={this.state.nodeStats} />
         {this.props.pageMode == 'upload' && this.state.uploadComplete == false ? <FileUpload parent={this} /> : ''}

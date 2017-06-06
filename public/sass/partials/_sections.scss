@@ -12,15 +12,16 @@
   .row {
     border-radius: 10px;
     .sidebar {
-      border-radius: 10px 0 0 10px;
+      border-radius: 10px 10px 0 10px;
       background-color: $darker;
       .header {
         height: 10vh;
-        border-radius: 10px 0 0 0;
+        border-radius: 10px 10px 0 0;
         background-color: $dark;
       }
       .sidebar-content {
         padding: 2%;
+        transition: all 0.5s ease;
         .sidebar-option {
           height: 12vh;
         }
@@ -42,11 +43,31 @@
         .sidebar-option {
           padding: 1vh 3%;
         }
+        @media(max-width: 576px) {
+          position: absolute;
+          width: 90%;
+          height: calc(60vh + 1px);
+          margin-top: -1px;
+          box-sizing: border-box;
+          padding: 5vh 1% 0 1%;
+          border-radius: 0 0 10px 10px;
+          background-color: $darker;
+          z-index: 2;
+          .sidebar-option {
+            margin: 1vh 0;
+          }
+        }
+      }
+      @media(min-width: 576px) {
+        border-radius: 10px 0 0 10px;
+        .header {
+          border-radius: 10px 0 0 0;
+        }
       }
     }
     .dropzone {
-      height: 90vh;
-      border-radius: 0 10px 10px 0;
+      height: 60vh;
+      border-radius: 0 0 10px 10px;
       transition: all 0.5s ease;
       z-index: 1;
       .node_status {
@@ -54,9 +75,9 @@
         margin: 2vh 2vh 0 0;
       }
       .dropzone_box {
-        width: 50%;
+        width: 70%;
         height: 40vh;
-        margin: 20vh 0 2vh 25%;
+        margin: 5vh 0 2vh 15%;
         border: 6px dashed $dark;
         border-radius: 10px;
         transition: 0.25s all ease;
@@ -105,6 +126,14 @@
           height: 8vh;
           width: 49%;
           margin-left: 20%;
+        }
+      }
+      @media(min-width: 576px) {
+        height: 90vh;
+        border-radius: 0 10px 10px 0;
+        .dropzone_box {
+          width: 50%;
+          margin: 20vh 0 2vh 25%;
         }
       }
     }
