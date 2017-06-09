@@ -48,7 +48,7 @@ class Core extends React.Component {
       this.setState({offOn: `${this.ipfs.isOnline() ? 'flash_on' : 'flash_off'}`})
       this.ipfs.id().then(function(testVal) {parent.setState({nodeStats: `${JSON.stringify(testVal, null, 2)}`})})
       this.ipfs.swarm.peers().then(a => console.log(a))
-      if(this.props.urlHash != ''){
+      if(this.props.urlHash != '' && this.props.urlHash != '/bcket'){
         this.setState({uploadComplete: true});
         this.setState({currentHash: this.props.urlHash});
         this.downloadFile(this.props.urlHash);
