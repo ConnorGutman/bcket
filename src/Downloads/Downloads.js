@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import Heading from './Heading.js';
 import DownloadHistory from './DownloadHistory.js';
 
 class Downloads extends Component {
   render() {
     return (
-      <div className="hidden-s-down" id="downloads">
-        <Heading />
+      <div id="downloads">
         <DownloadHistory />
       </div>
     );

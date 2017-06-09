@@ -4,6 +4,20 @@ body {
 p {
   margin: 0;
 }
+::-webkit-input-placeholder { /* Chrome */
+  color: $dark;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $dark;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $dark;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: $dark;
+  opacity: 1;
+}
 .text-center {
   text-align: center;
 }
@@ -100,7 +114,7 @@ p {
       .dropzone_box {
         p {
           i {
-            font-size: 6em;
+            font-size: 4em;
             color: $dark;
             line-height: 40vh;
             transition: 0.25s color ease;
@@ -114,6 +128,13 @@ p {
             }
           }
         }
+        @media(min-width: 576px) {
+          p {
+            i {
+              font-size: 6em;
+            }
+          }
+        }
       }
       .fileInfo {
         .sidebar-scene {
@@ -124,7 +145,7 @@ p {
                 height: 100%;
                 top: 0;
                 bottom: 0;
-                font-size: 2em;
+                font-size: 1em;
                 color: #fff;
               }
               @media(min-width: 576px) {
@@ -150,8 +171,8 @@ p {
           }
           .hash-link {
             word-wrap: break-word;
-            margin: 5vh 5%;
-            font-size: 1.5em;
+            margin: 1vh 0;
+            font-size: 1.25em;
             a {
               text-decoration: none;
               color: $dark;
@@ -192,7 +213,8 @@ p {
         h1 {
           color: $dark;
           i {
-            font-size: 4em;
+            font-size: 3em;
+            width: 100%;
           }
         }
         h2 {
@@ -209,6 +231,13 @@ p {
           i {
             color: #fff;
             font-size: 2em;
+          }
+        }
+        @media(min-width: 576px) {
+          h1 {
+            i {
+              font-size: 4em;
+            }
           }
         }
       }

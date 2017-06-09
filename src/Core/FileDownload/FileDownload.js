@@ -26,10 +26,9 @@ class FileDownload extends Component {
   render() {
     return (
       <div className="downloadSection">
-      <h1 className="text-center"><i className="material-icons">fingerprint</i></h1>
-      <h2 className="text-center">Enter your file&#39;s unique fingerprint.</h2>
+      <h1 className="text-center"><i className="material-icons">find_in_page</i></h1>
       <form id="findFile" onSubmit={() => {this.downloadFromHash(event)}}>
-        <input id="hashBox" type="text" placeholder="" onChange={evt => this.updateInputValue(evt)} />
+        <input id="hashBox" type="text" placeholder="Enter file hash." onChange={evt => this.updateInputValue(evt)} />
         <button className="download-btn" type="submit"><i className="material-icons">file_download</i></button>
       </form>
       </div>

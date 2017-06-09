@@ -20,7 +20,9 @@
   },
   "dependencies": {
     "file-type": "^4.3.0",
-    "ipfs": "^0.23.1"
+    "ipfs": "^0.23.1",
+    "prop-types": "^15.5.10",
+    "query-string": "^4.3.4"
   },
   "main": "index.js"
 }

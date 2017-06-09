@@ -12,7 +12,7 @@ class Sidebar extends Component {
         <div className={`sidebar-content ${this.props.mobileToggle}`}>
           <Options name={'transfer'} isActive={this.props.activePage == 'upload' ? 'active' : ''} icon={'swap_horiz'} text={'Upload'} toPage={this.props.toUpload} />
           <Options name={'download'} isActive={this.props.activePage == 'download' ? 'active' : ''} icon={'file_download'} text={'Download'} toPage={this.props.toDownload} />
-          <Options name={'save'} isActive={this.props.activePage == 'save' ? 'active' : ''} icon={'cloud_done'} text={'Save'} toPage={this.props.toSave} />
+          <Options name={'sync'} isActive={this.props.activePage == 'sync' ? 'active' : ''} icon={'cloud_done'} text={'Sync'} toPage={this.props.toSync} />
           <Ad />
           <Footer />
         </div>

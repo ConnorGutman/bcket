@@ -4,18 +4,23 @@ import Core from './Core/Core';
 import Downloads from './Downloads/Downloads';
 
 class App extends Component {
+
   constructor() {
         super();
+        this.parser = document.createElement('a');
+        this.parser.href = window.location.href;
         this.state = {
             mobileToggle: 'hidden-menu',
             pageMode: 'upload',
-            activePage: 'upload'
+            activePage: 'upload',
+            urlHash: this.parser.pathname.substring(1)
         };
+
         this.menuToggle = 0;
         this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
         this.toUpload = this.toUpload.bind(this);
         this.toDownload = this.toDownload.bind(this);
-        this.toSave = this.toSave.bind(this);
+        this.toSync = this.toSync.bind(this);
     }
     toggleMobileMenu() {
       if(this.menuToggle == 0) {
@@ -44,10 +49,10 @@ class App extends Component {
       })
       this.toggleMobileMenu()
     }
-    toSave() {
+    toSync() {
       this.setState({
-        pageMode: 'save',
-        activePage: 'save'
+        pageMode: 'sync',
+        activePage: 'sync'
       })
       this.toggleMobileMenu()
     }
@@ -56,8 +61,8 @@ class App extends Component {
     return (
       <div className="container">
         <div className="row" id="main-r">
-          <Sidebar mobileToggle={this.state.mobileToggle} toggleMobileMenu={this.toggleMobileMenu} pageMode={this.state.pageMode} activePage={this.state.activePage} toUpload={this.toUpload} toDownload={this.toDownload} toSave={this.toSave} />
-          <Core pageMode={this.state.pageMode} activePage={this.state.activePage} toUpload={this.toUpload} toDownload={this.toDownload} toSave={this.toSave} />
+          <Sidebar mobileToggle={this.state.mobileToggle} toggleMobileMenu={this.toggleMobileMenu} pageMode={this.state.pageMode} activePage={this.state.activePage} toUpload={this.toUpload} toDownload={this.toDownload} toSync={this.toSync} />
+          <Core pageMode={this.state.pageMode} activePage={this.state.activePage} toUpload={this.toUpload} toDownload={this.toDownload} toSync={this.toSync} urlHash={this.state.urlHash} />
           <Downloads />
         </div>
       </div>

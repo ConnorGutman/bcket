@@ -9,7 +9,7 @@ import NodeStats from './NodeInfo/NodeStats';
 class Core extends React.Component {
   constructor() {
     super()
-    this.state = {offOn: 'flash_off', nodeStats: 'Loading..', currentHash: '', gatewayLink: '', uploadTime: '', uploadComplete: false, currentExtension: '', currentFileSize: ''};
+    this.state = {offOn: 'flash_off', nodeStats: 'Loading..', currentHash: '', gatewayLink: '', uploadTime: '', uploadComplete: false, currentExtension: '', currentFileSize: '', downloadStarted: false, UorD: 'file_upload'};
     this.ipfs = {}
 
     // bind methods
@@ -48,6 +48,11 @@ class Core extends React.Component {
       this.setState({offOn: `${this.ipfs.isOnline() ? 'flash_on' : 'flash_off'}`})
       this.ipfs.id().then(function(testVal) {parent.setState({nodeStats: `${JSON.stringify(testVal, null, 2)}`})})
       this.ipfs.swarm.peers().then(a => console.log(a))
+      if(this.props.urlHash != ''){
+        this.setState({uploadComplete: true});
+        this.setState({currentHash: this.props.urlHash});
+        this.downloadFile(this.props.urlHash);
+      }
     })
   }
 
@@ -70,7 +75,7 @@ class Core extends React.Component {
       .then(i => i.pop().hash)
       .then(hash => {
         this.setState({currentHash: hash})
-        this.setState({gatewayLink: `https://gateway.ipfs.io/ipfs/${hash}`})
+        this.setState({gatewayLink: `localhost:3000/${hash}`})
         return this.ipfs.files.cat(hash)
       })
     let t1 = performance.now();
@@ -106,10 +111,16 @@ class Core extends React.Component {
       fileExt = '';
     }
     console.log(fileExt)
+    function formatBytes(a,b){if(0==a)return"0 Bytes";var c=1e3,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
+    parent.setState({currentExtension: fileExt.substr(1)})
+    parent.setState({currentFileSize: formatBytes(file.size)})
+    parent.setState({UorD: 'file_download'})
     link.setAttribute('href', fileUrl)
     link.setAttribute('download', multihash + fileExt)
-    const date = (new Date()).toLocaleTimeString()
-    link.innerText = date + ' - ' + multihash + fileExt + ' - Size: ' + file.size
+    //const date = (new Date()).toLocaleTimeString()
+    //file.size
+    link.innerText = multihash + fileExt
+    link.click()
   };
   fileReader.readAsArrayBuffer(file);
   listItem.appendChild(link)
@@ -119,6 +130,7 @@ class Core extends React.Component {
   downloadFile(currentHash) {
     event.preventDefault();
     console.log(currentHash)
+    this.setState({downloadStarted: true});
     this.getFile(currentHash)
   }
 
@@ -138,10 +150,11 @@ class Core extends React.Component {
     }
 
     filesStream.on('data', (file) => {
-      document.getElementById("mainContent").className += " drawer-open";
-      setTimeout(function(){
-        document.getElementById("downloads").className = "col-3";
-      }, 1000);
+      document.getElementById("downloads").className += " show-downloads";
+      //setTimeout(function(){
+        //document.getElementById("downloads").className = "col-3";
+      //}, 1000);
+
       if (file.content) {
         const buf = []
         // buffer up all the data in the file
@@ -160,7 +173,9 @@ class Core extends React.Component {
     filesStream.on('end', () => console.log('Every file was fetched for', multihash))
     let t1 = performance.now();
     console.log("Download took " + (t1 - t0) + " milliseconds.")
-    document.getElementById("History").innerHTML += `Download took ${(t1 - t0)} milliseconds.`
+    this.setState({UorD: 'file_download'})
+    this.setState({uploadTime: `${Math.round(t1-t0)} milliseconds.`})
+    //document.getElementById("History").innerHTML += `Download took ${(t1 - t0)} milliseconds.`
   })
 }
 
@@ -173,10 +188,10 @@ class Core extends React.Component {
       <div className="col-9 col-s-12 dropzone shadow-bg" id="mainContent">
         <NodeStatus offOn={this.state.offOn} />
         <NodeStats Stats={this.state.nodeStats} />
-        {this.props.pageMode == 'upload' && this.state.uploadComplete == false ? <FileUpload parent={this} /> : ''}
-        {this.state.uploadComplete == true && this.props.pageMode == 'upload' ? <FileView uploadTime={this.state.uploadTime} currentHash={this.state.currentHash} gatewayLink={this.state.gatewayLink} parent={this} currentExtension={this.state.currentExtension} currentFileSize={this.state.currentFileSize} /> : ''}
-        {this.props.pageMode == 'download' ? <FileDownload parent={this} /> : ''}
-        {this.props.pageMode == 'save' ? 'Nothing is here yet.' : ''}
+        {this.props.pageMode == 'upload' && this.state.uploadComplete == false && this.state.downloadStarted == false ? <FileUpload parent={this} /> : ''}
+        {this.state.uploadComplete == true && this.props.pageMode == 'upload' || this.state.downloadStarted == true ? <FileView uploadTime={this.state.uploadTime} currentHash={this.state.currentHash} gatewayLink={this.state.gatewayLink} parent={this} currentExtension={this.state.currentExtension} currentFileSize={this.state.currentFileSize} UorD={this.state.UorD} /> : ''}
+        {this.props.pageMode == 'download' && this.state.downloadStarted == false ? <FileDownload parent={this} /> : ''}
+        {this.props.pageMode == 'sync' ? 'Nothing is here yet.' : ''}
       </div>
     )
   }
